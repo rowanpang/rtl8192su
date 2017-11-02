@@ -21,10 +21,13 @@ EXTRA_CFLAGS += -DDEBUG -DCONFIG_RTLWIFI_DEBUGFS=m
 all:
 	$(MAKE) -C $(KSRC) M=$(KMOD_SRC) $(KMOD_OPTIONS) $(MAKECMDGOALS) EXTRA_CFLAGS="$(EXTRA_CFLAGS)"
 
-.PHONY: all clean load unload reload test
+.PHONY: all clean load unload reload test fsInstall
 
 clean:
 	$(MAKE) -C $(KSRC) M=$(KMOD_SRC) clean $(KMOD_OPTIONS)
+
+fsInstall:
+	@./fsIns.sh
 
 load:
 	modprobe mac80211
